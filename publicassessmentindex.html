@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Procurement Maturity Assessment — Weinold Consulting</title>
+<style>
+  :root{
+    --ink:#14263F; --navy:#1F3864; --navy2:#2E5B8A; --steel:#6C7F97; --faint:#9AAABF;
+    --paper:#F4F6F9; --card:#FFFFFF; --line:#DCE3EC;
+    --amber:#C55A11; --amber-soft:#FBEFE4;
+    --lvlA:#B14A3A; --lvlB:#B9832A; --lvlC:#3E7CA6; --lvlD:#2E7D5B;
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono','Cascadia Mono',Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.55;font-size:16px}
+  button{font-family:inherit;cursor:pointer}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+  /* ---------- intro ---------- */
+  #intro{min-height:100vh;display:flex;flex-direction:column;background:
+    radial-gradient(60rem 30rem at 85% -10%, #2A4A78 0%, transparent 60%), var(--navy);
+    color:#fff;position:relative;overflow:hidden}
+  #intro .diamond-bg{position:absolute;right:-140px;top:50%;transform:translateY(-50%);opacity:.14;pointer-events:none}
+  .intro-inner{position:relative;max-width:760px;margin:auto;padding:64px 24px;text-align:left;width:100%}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:#F0B98A;text-transform:uppercase}
+  #intro h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,54px);line-height:1.12;margin:18px 0 14px}
+  #intro .sub{color:#C6D2E2;font-size:17px;max-width:56ch}
+  .facts{display:flex;gap:28px;flex-wrap:wrap;margin:30px 0 34px}
+  .fact b{font-family:var(--serif);font-size:26px;display:block;color:#fff;font-weight:400}
+  .fact span{font-size:12.5px;color:#9FB2CA;letter-spacing:.04em;text-transform:uppercase}
+  .id-fields{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+  .id-fields label{display:block;font-size:12px;color:#9FB2CA;margin-bottom:5px;letter-spacing:.05em;text-transform:uppercase}
+  .id-fields input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);border-radius:6px;
+    color:#fff;padding:10px 12px;font-size:15px;width:250px;max-width:80vw}
+  .id-fields input:focus{outline:2px solid #F0B98A;outline-offset:1px}
+  .btn{display:inline-block;border:none;border-radius:6px;padding:13px 26px;font-size:16px;font-weight:600;
+    transition:background .15s,transform .1s}
+  .btn:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+  .btn-amber{background:var(--amber);color:#fff}
+  .btn-amber:hover{background:#A94C0C}
+  .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+  .btn-ghost:hover{background:#EDF1F7}
+  .privacy{margin-top:16px;font-size:13px;color:#8FA3BD}
+
+  /* ---------- assessment layout ---------- */
+  #assess{display:none}
+  .assess-grid{display:grid;grid-template-columns:250px 1fr;gap:36px;padding:44px 0 90px}
+  .rail{position:sticky;top:24px;align-self:start}
+  .rail h2{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--steel);text-transform:uppercase;margin-bottom:14px}
+  .rail ol{list-style:none}
+  .rail li{margin-bottom:2px}
+  .rail button{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;background:none;border:none;
+    padding:7px 10px;border-radius:6px;font-size:13.5px;color:var(--steel)}
+  .rail button:hover:not(:disabled){background:#E9EEF5;color:var(--navy)}
+  .rail button:disabled{cursor:default;opacity:.55}
+  .rail .num{font-family:var(--mono);font-size:11px;width:18px;flex:none}
+  .rail li.current button{background:var(--navy);color:#fff}
+  .rail li.done .num::after{content:" ✓";color:var(--lvlD)}
+  .rail li.current.done .num::after{color:#9FE3C4}
+  .progressbar{height:5px;background:var(--line);border-radius:3px;margin:16px 0 6px;overflow:hidden}
+  .progressbar div{height:100%;background:var(--amber);width:0;transition:width .3s}
+  .progress-label{font-size:12px;color:var(--steel)}
+
+  .section-head{margin-bottom:22px}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase}
+  .section-head h2{font-family:var(--serif);font-weight:400;font-size:30px;color:var(--navy);margin:6px 0 6px}
+  .section-head p{color:var(--steel);font-size:15px;max-width:64ch}
+
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin-bottom:18px}
+  .qhead{display:flex;gap:12px;align-items:baseline;margin-bottom:14px}
+  .qid{font-family:var(--mono);font-size:12px;color:var(--navy);background:#E9EEF5;border-radius:4px;padding:2px 8px;flex:none}
+  .qtext{font-weight:600;font-size:16.5px;line-height:1.4}
+  .opts{display:grid;gap:8px}
+  .opt{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;border:1.5px solid var(--line);
+    border-radius:8px;padding:11px 14px;background:#fff;transition:border-color .12s,background .12s}
+  .opt:hover{border-color:var(--navy2)}
+  .opt input{margin-top:5px;accent-color:var(--navy);width:16px;height:16px}
+  .opt .lvl{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--steel);display:block;margin-bottom:2px}
+  .opt .desc{font-size:14.5px;color:#33465F}
+  .opt.selected{border-color:var(--navy);background:#F2F6FB}
+  .opt.selected .lvl{color:var(--navy);font-weight:700}
+  .opt:focus-within{outline:2px solid var(--amber);outline-offset:1px}
+
+  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:14px;flex-wrap:wrap}
+  .nav-hint{font-size:13.5px;color:var(--steel)}
+  .nav-hint.warn{color:var(--lvlA);font-weight:600}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+
+  /* ---------- results ---------- */
+  #results{display:none;padding:52px 0 90px}
+  .res-head{text-align:center;max-width:720px;margin:0 auto 36px}
+  .res-head h2{font-family:var(--serif);font-weight:400;font-size:36px;color:var(--navy);margin:8px 0 4px}
+  .res-org{color:var(--steel);font-size:15px}
+  .score-hero{display:flex;justify-content:center;gap:44px;align-items:center;flex-wrap:wrap;margin:26px 0 8px}
+  .big-score{font-family:var(--serif);font-size:74px;line-height:1;color:var(--navy)}
+  .big-score small{font-size:26px;color:var(--faint)}
+  .score-meta{text-align:left;max-width:34ch}
+  .lvl-chip{display:inline-block;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:#fff;border-radius:4px;padding:4px 10px;margin-bottom:8px}
+  .score-meta p{font-size:14.5px;color:#33465F}
+
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:30px;margin-bottom:26px}
+  .panel > h3{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--navy);margin-bottom:4px}
+  .panel > .panel-sub{color:var(--steel);font-size:14px;margin-bottom:20px}
+  .chart-grid{display:grid;grid-template-columns:minmax(300px,460px) 1fr;gap:34px;align-items:center}
+  #radar{width:100%;height:auto;display:block}
+  .cap-bars{display:grid;gap:9px}
+  .cap-bar{display:grid;grid-template-columns:118px 1fr 44px;gap:10px;align-items:center;font-size:13.5px}
+  .cap-bar .nm{color:#33465F;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cap-bar .track{height:9px;background:#EBF0F6;border-radius:5px;overflow:hidden}
+  .cap-bar .fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--navy2),var(--navy))}
+  .cap-bar .val{font-family:var(--mono);font-size:12.5px;color:var(--navy);text-align:right}
+
+  .rec{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line)}
+  .rec:first-of-type{border-top:none;padding-top:6px}
+  .rec-rank{font-family:var(--serif);font-size:34px;color:var(--amber);line-height:1}
+  .rec h4{font-size:17px;color:var(--navy);margin-bottom:3px}
+  .rec .rec-cap{font-family:var(--mono);font-size:12px;color:var(--steel);margin-bottom:7px}
+  .rec p{font-size:14.5px;color:#33465F;max-width:78ch}
+
+  .cta{background:linear-gradient(120deg,var(--navy) 0%,#2A4A78 100%);color:#fff;border-radius:12px;
+    padding:34px 32px;margin-bottom:26px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
+    border-left:6px solid var(--amber)}
+  .cta h3{font-family:var(--serif);font-weight:400;font-size:25px;margin-bottom:8px}
+  .cta p{color:#C6D2E2;font-size:15px;max-width:62ch}
+  .cta a.btn{white-space:nowrap;text-decoration:none;text-align:center}
+
+  .sum-cap{margin-bottom:6px}
+  .sum-cap-head{display:flex;justify-content:space-between;align-items:baseline;background:#EFF3F8;border-radius:6px;
+    padding:8px 14px;margin:16px 0 8px;font-size:14px}
+  .sum-cap-head b{color:var(--navy)}
+  .sum-cap-head span{font-family:var(--mono);font-size:12.5px;color:var(--steel)}
+  table.sum{width:100%;border-collapse:collapse;font-size:14px}
+  table.sum td{padding:7px 10px;border-bottom:1px solid #EDF1F6;vertical-align:top}
+  table.sum td.c-id{font-family:var(--mono);font-size:12px;color:var(--navy);width:64px;white-space:nowrap}
+  table.sum td.c-lvl{width:150px;white-space:nowrap;text-align:right}
+  .chip{display:inline-block;font-family:var(--mono);font-size:11.5px;color:#fff;border-radius:4px;padding:2px 8px}
+  .chip.A{background:var(--lvlA)}.chip.B{background:var(--lvlB)}.chip.C{background:var(--lvlC)}.chip.D{background:var(--lvlD)}
+  .res-actions{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+
+  footer{background:var(--ink);color:#8FA3BD;text-align:center;padding:26px 20px;font-size:13px}
+  footer b{color:#D5DFEC;font-weight:600}
+
+  @media (max-width:860px){
+    .assess-grid{grid-template-columns:1fr;gap:18px;padding-top:26px}
+    .rail{position:static}
+    .rail ol{display:none}
+    .chart-grid{grid-template-columns:1fr}
+    .cta{grid-template-columns:1fr}
+    .score-hero{gap:24px}
+  }
+  @media print{
+    body{background:#fff}
+    #intro,#assess,.res-actions,.cta a.btn,footer{display:none!important}
+    #results{display:block!important;padding:0}
+    .panel,.cta{border:1px solid #ccc;break-inside:avoid}
+    .cta{background:#fff;color:var(--ink)}
+    .cta p{color:#333}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= INTRO ================= -->
+<section id="intro">
+  <svg class="diamond-bg" width="560" height="560" viewBox="0 0 560 560" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-width="1">
+      <polygon points="280,40 520,280 280,520 40,280"/>
+      <polygon points="280,100 460,280 280,460 100,280"/>
+      <polygon points="280,160 400,280 280,400 160,280"/>
+      <polygon points="280,220 340,280 280,340 220,280"/>
+      <line x1="280" y1="40" x2="280" y2="520"/><line x1="40" y1="280" x2="520" y2="280"/>
+      <line x1="110" y1="110" x2="450" y2="450"/><line x1="450" y1="110" x2="110" y2="450"/>
+    </g>
+  </svg>
+  <div class="intro-inner">
+    <div class="eyebrow">Weinold Consulting · Strategic Diagnostic</div>
+    <h1>How mature is your procurement function?</h1>
+    <p class="sub">Assess your organisation across eleven capabilities — from strategy and sourcing to risk, technology and AI governance. You will receive a maturity profile, your three biggest levers, and a question-by-question breakdown.</p>
+    <div class="facts">
+      <div class="fact"><b>11</b><span>Capabilities</span></div>
+      <div class="fact"><b>72</b><span>Questions</span></div>
+      <div class="fact"><b>A–D</b><span>Maturity levels</span></div>
+      <div class="fact"><b>~20 min</b><span>To complete</span></div>
+    </div>
+    <div class="id-fields">
+      <div><label for="orgName">Organisation (optional)</label><input id="orgName" type="text" autocomplete="organization" placeholder="Your company"></div>
+      <div><label for="userName">Assessed by (optional)</label><input id="userName" type="text" autocomplete="name" placeholder="Your name"></div>
+    </div>
+    <button class="btn btn-amber" onclick="startAssessment()">Start the assessment</button>
+    <p class="privacy">Your answers stay in your browser. Nothing is transmitted unless you choose to share your results at the end.</p>
+  </div>
+</section>
+
+<!-- ================= ASSESSMENT ================= -->
+<section id="assess">
+  <div class="wrap assess-grid">
+    <aside class="rail">
+      <h2>Capabilities</h2>
+      <div class="progressbar"><div id="pbar"></div></div>
+      <div class="progress-label" id="plabel"></div>
+      <ol id="railList" style="margin-top:14px"></ol>
+    </aside>
+    <main id="sectionHost" aria-live="polite"></main>
+  </div>
+</section>
+
+<!-- ================= RESULTS ================= -->
+<section id="results">
+  <div class="wrap">
+    <div class="res-head">
+      <div class="kicker">Assessment results</div>
+      <h2>Your procurement maturity profile</h2>
+      <div class="res-org" id="resOrg"></div>
+      <div class="score-hero">
+        <div class="big-score"><span id="bigScore">–</span><small> / 4.00</small></div>
+        <div class="score-meta">
+          <span class="lvl-chip" id="lvlChip"></span>
+          <p id="lvlText"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Maturity by capability</h3>
+      <div class="panel-sub">Average score per capability (1 = Foundational · 4 = Best-in-Class), weighted into your overall score.</div>
+      <div class="chart-grid">
+        <svg id="radar" viewBox="0 0 460 440" role="img" aria-label="Diamond chart of maturity per capability"></svg>
+        <div class="cap-bars" id="capBars"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Your three biggest levers</h3>
+      <div class="panel-sub">High-level recommendations based on your lowest-scoring capabilities.</div>
+      <div id="recHost"></div>
+    </div>
+
+    <div class="cta">
+      <div>
+        <h3>Turn this diagnostic into a transformation plan</h3>
+        <p>These results show <em>where</em> to act — the how depends on your business context, ambition and constraints. Reach out to <b>Peter Weinold</b> at <b>Weinold Consulting</b> for a customised plan to elevate your procurement function, from quick wins to a full transformation roadmap.</p>
+      </div>
+      <a class="btn btn-amber" id="ctaLink" href="#">Contact Peter Weinold</a>
+    </div>
+
+    <div class="panel" id="sharePanel">
+      <h3>Share your results with Weinold Consulting</h3>
+      <div class="panel-sub">Send your maturity profile so a customised follow-up can be prepared before your first conversation. Nothing is shared until you click.</div>
+      <div class="res-actions" style="justify-content:flex-start">
+        <button class="btn btn-amber" id="autoSendBtn" style="display:none" onclick="sendResults(this)">Send my results</button>
+        <a class="btn btn-amber" id="emailResultsBtn" href="#">Email my results</a>
+        <button class="btn btn-ghost" onclick="downloadCSV()">Download results (CSV)</button>
+      </div>
+      <p style="font-size:13px;color:var(--steel);margin-top:12px" id="shareNote">“Email my results” opens your mail program with the scores pre-filled — just press send. The CSV can be attached to any email.</p>
+    </div>
+
+    <div class="panel">
+      <h3>Scoring per question</h3>
+      <div class="panel-sub">Your selected maturity level for each of the 72 questions, for easy reference.</div>
+      <div id="sumHost"></div>
+    </div>
+
+    <div class="res-actions">
+      <button class="btn btn-ghost" onclick="window.print()">Print / save as PDF</button>
+      <button class="btn btn-ghost" onclick="reviewAnswers()">Review answers</button>
+      <button class="btn btn-ghost" onclick="restart()">Start over</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>Peter Weinold</b> — Procurement &amp; Transformation Advisor · Weinold Consulting<br>
+  Procurement Maturity Assessment 2.0 · 11 capabilities · 72 questions · WeinoldConsulting@gmail.com
+</footer>
+
+<script>
+const SECTIONS = [{"num":"1","title":"Strategic Planning & Alignment","short":"Strategy","weight":15,"rec":{"title":"Anchor procurement in the business strategy","text":"Establish (or refresh) a documented procurement strategy co-owned with business leaders, and roll out a consistent category-strategy process with formal approval, spend transparency and benefit tracking. Without this foundation, sourcing wins stay tactical and unrepeatable."},"questions":[{"id":"SP1","q":"Does procurement have a documented strategy aligned with overall business objectives?","levels":["Procurement acts tactically with no documented or shared strategy.","A basic strategy exists but is not consistently applied across teams.","A clearly defined procurement strategy aligns with business priorities and guides category planning.","The strategy is co-owned with business leaders, refreshed as priorities evolve, and measured for impact."]},{"id":"SP2","q":"Are category strategies prepared with documented market analysis and sourcing plans before execution?","levels":["Sourcing decisions are reactive; categories lack structured planning.","Basic category strategies exist for key areas using limited market data.","All categories follow a consistent planning approach informed by supply-market insight.","Category strategies are dynamic roadmaps integrating AI-enabled market intelligence, real-time supply signals, and delivering measurable business outcomes."]},{"id":"SP3","q":"Is the procurement strategy reviewed and updated regularly to reflect business and market change?","levels":["Strategy rarely revisited; updates occur only after major issues.","Reviews take place periodically but focus mainly on financial results.","Cross-functional reviews adjust the strategy based on business and market developments.","Continuous learning and feedback loops ensure the strategy evolves proactively and remains fully relevant."]},{"id":"SP4","q":"How integrated is procurement in enterprise planning processes such as budgeting, product road-mapping, or sales and operations planning?","levels":["Procurement informed after key decisions are made.","Procurement contributes to annual planning but with limited influence.","Procurement participates actively in cross-functional planning forums.","Procurement is a strategic partner shaping enterprise plans through insight and innovation."]},{"id":"SP5","q":"Are governance policies such as delegations, approval limits, and ethical standards documented and enforced?","levels":["No formal governance or compliance framework.","Policies exist but are applied inconsistently across regions or categories.","Policies embedded in daily operations and reinforced through systems and training.","Governance empowers decision-making while ensuring transparency and accountability."]},{"id":"SP6","q":"Is a structured spend review conducted to provide visibility and insight across all categories and channels?","levels":["Spend data fragmented and unreliable; no systematic review process.","Consolidated spend view compiled periodically for leadership review using standard reporting tools.","AI-assisted spend analysis identifies opportunities, detects anomalies, and informs strategic actions on a regular basis.","AI-driven spend intelligence continuously surfaces opportunities, detects anomalies, and triggers proactive actions — insights are embedded in real-time decision-making across the business."]},{"id":"SP7","q":"Are category strategies documented, approved, and governed through a formal review process?","levels":["No documented approval process for category strategies.","Category plans reviewed informally by procurement leadership.","Defined governance standards and approvals ensure consistency and traceability.","Governance reviews used to align stakeholders and share learnings across categories."]},{"id":"SP8","q":"Are procurement value levers such as demand management, supplier rationalisation, or design-to-value systematically applied?","levels":["Procurement relies almost entirely on price negotiation.","Some cost-reduction levers considered case-by-case.","Value levers chosen deliberately and applied through category plans, including AI-enabled demand shaping and tail-spend management.","A holistic value-creation mindset embedded; teams optimise demand, innovation, sustainability, and AI-driven autonomous tail-spend management together."]},{"id":"SP9","q":"Is procurement data on spend, suppliers, and contracts transparent, reliable, and actively used for decision-making?","levels":["Data incomplete and inconsistently structured; limited usefulness.","Central dataset exists but maintained manually and irregularly.","Data quality managed with defined ownership, structured for AI/analytics consumption, and routinely used in analysis.","Enterprise data foundation is AI-ready: governed, real-time, and integrated across systems — enabling autonomous analytics and AI agent operation with full transparency."]},{"id":"SP10","q":"Are category strategies executed and monitored to ensure compliance and benefit realisation?","levels":["Execution not tracked; results anecdotal.","Tracking in place for major projects but lacks consistent follow-up.","Formal process monitors delivery of strategy objectives with stakeholder validation.","Execution fully integrated with business performance reviews; lessons learned drive continuous improvement."]},{"id":"SP11","q":"Is there a structured innovation process — scouting, evaluation, and transfer of supplier and market innovation into the business?","levels":["Innovation opportunistic; no scouting, pipeline, or ownership.","Ideas collected occasionally for selected categories; no formal funnel or governance.","Structured innovation pipeline (research, evaluation/selection, transfer) with cross-functional ownership and regular review of ideas and resources.","Innovation management embedded in category strategies; AI-supported scouting widens the funnel; pipeline value is measured and concepts systematically commercialised with suppliers."]}]},{"num":"2","title":"Organisation & Governance","short":"Organisation","weight":5,"rec":{"title":"Clarify the operating model and mandate","text":"Define who does what across category management, sourcing and operational buying, measure the share of spend under procurement management, and close the gap with an explicit coverage plan. Structure and mandate determine how far every other capability can scale."},"questions":[{"id":"OG1","q":"Is the procurement operating model (centralised, centre-led, or business-partnered) deliberately designed and periodically reviewed against business needs?","levels":["Structure has grown historically; split between strategic, tactical, and operational work unclear.","Basic structure defined, but overlaps exist between category management, sourcing, and operational buying.","Operating model deliberately designed with a clear split of Plan-to-Strategy, Source-to-Contract, and Demand-to-Delivery responsibilities; reviewed periodically.","Operating model continuously optimised against business strategy; seamless collaboration across category management, sourcing, supply chain, and business partners at benchmark efficiency."]},{"id":"OG2","q":"Does procurement have a clear mandate, and is the share of total spend under procurement management known, tracked, and actively expanded?","levels":["Mandate unclear; significant spend bypasses procurement and is not measured.","Mandate defined for key categories; spend under management estimated but not systematically tracked.","Spend under management measured and reported; concrete plans bring uncovered spend under professional management.","Near-complete spend coverage; mandate anchored in executive governance — and capability, not mandate, drives business demand for procurement involvement."]},{"id":"OG3","q":"Are roles, responsibilities, and resourcing across category management, sourcing, and operational buying clearly defined and adequate for the workload?","levels":["Roles blurred; individuals cover all activities; resourcing purely reactive.","Job profiles exist but responsibilities overlap and workload is unbalanced.","Clear role definitions and interfaces; capacity planned against the category and project pipeline.","Dynamic allocation of resources to highest-value work; workforce planning integrates skills, capacity, and automation potential."]}]},{"num":"3","title":"Sourcing Execution","short":"Sourcing","weight":15,"rec":{"title":"Standardise and sharpen sourcing execution","text":"Implement one governed Source-to-Contract process: robust specifications and total-cost models before market engagement, structured negotiations, balanced award criteria, and Finance-validated savings at award. Add should-cost and TCO analytics to shift negotiations from price haggling to fact-based value."},"questions":[{"id":"SE1","q":"Are sourcing methods documented, governed, and consistently applied across categories?","levels":["Sourcing carried out ad-hoc with no defined or repeatable process.","A basic sourcing process exists but application varies by buyer or region.","A clear, standardised sourcing framework is in place and followed consistently.","The sourcing framework is embedded, continually improved, and enables teams to act efficiently within clear guardrails."]},{"id":"SE2","q":"Are requirements, specifications, and total-cost models prepared robustly before sourcing events?","levels":["Requirements vague or incomplete; sourcing starts before business alignment.","Basic requirement templates used for key purchases.","Cross-functional teams define requirements and cost models prior to market engagement, supported by data analytics.","AI-augmented requirement generation and total-cost modelling enable rapid, data-rich preparation — validated cross-functionally and enriched with market intelligence before engagement."]},{"id":"SE3","q":"Are negotiations prepared and executed using structured approaches with documented outcomes?","levels":["Negotiations informal; outcomes undocumented.","Preparation templates exist but used inconsistently.","Negotiation playbooks, cost analyses, and debriefs used across most categories.","AI-powered preparation delivers real-time benchmarks, scenario models, and data-backed playbooks; negotiation outcomes are systematically captured to train future strategies."]},{"id":"SE4","q":"Are contracting processes standardised with clear ownership and lifecycle management?","levels":["Contracts produced individually with no standard terms or review steps.","Templates and approval rules defined but inconsistently applied.","Central contract templates, legal reviews, and storage managed through a structured repository.","AI-enabled contract lifecycle: auto-drafting from approved clause libraries, intelligent risk and deviation flagging, obligation tracking, and renewal management — fully integrated across sourcing and SRM."]},{"id":"SE5","q":"Are sourcing decisions effectively handed over to operations through supplier onboarding and KPI setup?","levels":["Handover informal; accountability unclear.","Checklist used but responsibilities vary.","Structured handover ensures onboarding, data readiness, and KPI definition.","End-to-end transition process embedded; suppliers fully enabled and performance monitored from day one."]},{"id":"SE6","q":"Are category-strategy reviews and sourcing activities planned proactively rather than conducted ad-hoc?","levels":["Sourcing initiated reactively with no plan.","Annual sourcing plan exists but ownership unclear.","Cross-functional sourcing calendar aligned with business demand and updated regularly.","Sourcing plans dynamically managed using AI-driven market sensing and performance insight to anticipate business needs and trigger proactive action."]},{"id":"SE7","q":"Are market engagement mechanisms — including RFx, e-auctions, and AI-assisted supplier discovery — used strategically to maximise value and competition?","levels":["Competition limited; suppliers often selected directly without structured process.","Competitive bids used for most events but tools and evaluation criteria vary.","RFx, e-auction, and AI-assisted discovery tools applied using transparent, structured evaluation criteria.","AI agents autonomously identify suppliers, generate and evaluate RFQs, and recommend shortlists — human judgement applied to strategic decisions and final awards."]},{"id":"SE8","q":"Are sourcing decisions based on a balanced evaluation of price, quality, risk, and innovation?","levels":["Awards decided mainly on price.","Non-price factors considered but not consistently applied.","Multi-criteria evaluation models standard across major categories.","Decision-making fully transparent and data-driven, balancing commercial, operational, and sustainability objectives."]},{"id":"SE9","q":"Is a mobilisation readiness review completed before contract go-live to confirm operational execution?","levels":["No readiness review; suppliers start without preparation.","Checklist exists but not applied consistently.","Formal readiness review confirms system, process, and stakeholder readiness.","Readiness gate embedded in workflow; all stakeholders validate go-live readiness and responsibilities."]},{"id":"SE10","q":"Are savings validated with Finance at the point of contract award, using an agreed baseline methodology?","levels":["Savings estimated at award but never validated.","Finance reviews savings for major initiatives post-award.","Joint validation at award, based on agreed baseline principles, ensures traceability and accountability for projected benefits.","Validation at award fully standardised and largely automated; baselines, volumes, and savings types applied consistently across all initiatives."]},{"id":"SE11","q":"Are advanced cost analytics — cost breakdowns, should-cost models, total cost of ownership, and linear performance pricing — used to prepare negotiations and challenge supplier pricing?","levels":["Price comparisons only; no cost transparency.","Basic cost breakdowns or TCO analyses prepared for selected large deals.","Should-cost and TCO models standard for major categories; supplier financials analysed; insights systematically used in negotiations.","AI-assisted cost modelling (cleansheets, linear performance pricing, real-time cost indices) embedded in category and negotiation work; cost transparency drives fact-based supplier collaboration."]}]},{"num":"4","title":"Operational Procurement & Supply Chain","short":"Operations","weight":10,"rec":{"title":"Professionalise operational buying","text":"Define a channel strategy (catalogues, call-offs, e-RFQ), automate the requisition-to-pay flow, and measure touchless rates, PO compliance and tail spend. Transactional excellence frees capacity for strategic work and makes negotiated value actually stick."},"questions":[{"id":"OP1","q":"Is procurement integrated into demand forecasting and planning processes?","levels":["Procurement reacts to demand after it arises; no link to planning cycles.","Procurement receives forecasts but seldom influences them.","Forecasts and plans are developed jointly with supply-chain and business functions, supported by analytical tools.","AI-powered demand sensing integrates internal signals and external data to anticipate needs; procurement and planning operate as one adaptive system, continuously reshaping demand and supply strategies."]},{"id":"OP2","q":"Are inventory and replenishment practices linked to procurement processes?","levels":["Inventory and procurement operate separately; limited coordination.","Basic coordination on reorder levels for key items.","Procurement participates in defining inventory and replenishment parameters.","Procurement actively optimises total cost and service levels through integrated inventory and sourcing strategies."]},{"id":"OP3","q":"Does procurement collaborate effectively with logistics and operations to optimise delivery and service performance?","levels":["Collaboration informal; issues handled case-by-case.","Periodic coordination with logistics on key routes or suppliers.","Regular joint reviews of supplier and logistics performance.","End-to-end visibility and shared accountability for delivery, cost, and service."]},{"id":"OP4","q":"Are procurement decisions informed by supply-chain performance data such as OTIF, lead-time, and quality?","levels":["Supply-chain data rarely used in sourcing or contract decisions.","Basic performance metrics reviewed for major suppliers.","Procurement uses supply-chain data consistently to steer supplier choices.","AI-driven analytics deliver predictive supplier performance insights, automated alerts for deviations, and recommended corrective actions — enabling pre-emptive intervention rather than reactive response."]},{"id":"OP5","q":"Are demand and logistics insights used proactively to consolidate orders and leverage negotiations?","levels":["Procurement unaware of demand patterns or logistics constraints.","Data shared occasionally but not analysed.","Procurement routinely analyses demand to align sourcing and delivery.","AI-driven demand consolidation embedded in planning; decisions optimise cost, service, and sustainability with predictive scenario modelling."]},{"id":"OP6","q":"Is a defined procurement channel strategy (catalogues, punch-out, frame-agreement call-offs, e-RFQ, purchasing cards, free-text) implemented and actively managed?","levels":["No channel strategy; most requisitions raised as free-text.","Catalogues and frame agreements exist for some categories; channel choice left to requesters.","Channel strategy defined per category; requisitions routed through preferred channels; channel mix monitored and optimised.","Intelligent guided-buying front end automatically routes all demand to the optimal channel; free-text minimised; channel performance continuously optimised."]},{"id":"OP7","q":"Is the requisition-to-pay process efficient and measured — including touchless PO rates, cycle times, and automated invoice matching and dispute handling?","levels":["PO creation and invoice matching largely manual; cycle times unknown; disputes handled ad-hoc.","ERP workflows support requisition and PO processing, but many manual touches remain and measurement is limited.","High automation for standard transactions (auto-PO, three-way match, exception-based handling); touchless rate, cycle times, and dispute volumes tracked.","Agentic AI processes transactional workflows autonomously within guardrails; invoice disputes largely prevented at source; performance continuously measured and improved."]},{"id":"OP8","q":"Are contract and PO compliance measured and managed — including maverick buying — with a defined strategy for tail spend?","levels":["Off-contract buying not measured; tail spend unmanaged.","Compliance checked occasionally; tail spend recognised but not systematically addressed.","Compliance KPIs (PO coverage, frame-agreement utilisation) tracked with follow-up; tail-spend strategy (bundling, catalogues, marketplaces, buying desk) implemented.","Near-full compliance sustained through guided buying and automated controls; tail spend managed autonomously by AI-supported sourcing for low-value demand."]}]},{"num":"5","title":"Performance, Compliance & Contract Management","short":"Performance","weight":10,"rec":{"title":"Build a performance system the CFO trusts","text":"Track validated savings through budgets and the P&L, run a balanced KPI scorecard with external benchmarks, and close gaps in fraud controls and claim management. Credible measurement is what turns procurement results into business results."},"questions":[{"id":"PM1","q":"Are validated savings tracked through budgets and the P&L after award, using a documented benefit-realisation methodology?","levels":["Savings defined informally; realisation never followed up; results anecdotal.","Savings guidelines exist but post-award tracking applied inconsistently.","Common methodology validated by Finance; realised benefits tracked against budgets for all key initiatives.","End-to-end benefit realisation embedded in financial planning; savings visible in budgets and P&L and jointly reported by Procurement and Finance."]},{"id":"PM2","q":"Does procurement operate a balanced KPI framework covering cost, quality, delivery, sustainability, and innovation — benchmarked against external peers?","levels":["KPIs focus only on cost or savings; no external comparison.","Broader KPIs defined but measured inconsistently.","Balanced scorecard implemented across categories; results discussed with stakeholders and selectively benchmarked externally.","KPIs fully integrated into business performance reviews and benchmarked against best-in-class peers; outcomes drive improvement actions."]},{"id":"PM3","q":"Are working-capital levers such as payment terms, inventory, and early-payment programs actively managed?","levels":["No coordination on payment or inventory terms.","Standard terms defined; exceptions handled ad-hoc.","Procurement and Finance coordinate to optimise cash and cost outcomes.","Working-capital management embedded in sourcing strategy and supplier collaboration."]},{"id":"PM4","q":"Are anti-fraud and compliance controls in procurement processes clearly defined and monitored?","levels":["Few or no formal controls; reliance on individual integrity.","Basic checks applied during onboarding and approvals.","Segregation of duties, audit trails, conflict-of-interest declarations, and compliance reporting established with systematic monitoring.","AI-powered continuous monitoring detects fraud patterns, policy violations, and anomalies in real time — with automated escalation and audit-trail generation embedded across all procurement transactions."]},{"id":"PM5","q":"Are ESG and responsible-procurement requirements embedded in contracts and actively enforced?","levels":["No ESG or ethical clauses in contracts.","ESG clauses included but not monitored.","ESG compliance monitored through audits or reports.","ESG obligations integrated into performance management with clear accountability and improvement targets."]},{"id":"PM6","q":"Is there a structured feedback loop where contract and delivery performance inform strategy updates?","levels":["No mechanism to review outcomes or apply learnings.","Informal feedback collected after major projects.","Formal reviews assess performance and feed into future category strategies.","Continuous performance-to-strategy loop embedded, ensuring learnings drive measurable improvement."]},{"id":"PM7","q":"Is claim management — identification, documentation, and recovery of claims toward suppliers — handled systematically?","levels":["Claims handled ad-hoc; recovery depends on individual initiative.","Claims pursued for major incidents; documentation inconsistent.","Defined claim process with clear ownership, documentation standards, and tracking of recovery rates.","Proactive claim prevention and automated detection from contract obligations and delivery data; recoveries systematically maximised and learnings fed back into contracting."]}]},{"num":"6","title":"Supplier Relationship Management","short":"SRM","weight":10,"rec":{"title":"Manage suppliers as a portfolio, not a list","text":"Segment the supply base, install governance routines and scorecards for strategic suppliers, and manage the full lifecycle from onboarding to exit. Deep supplier relationships unlock innovation, resilience and cost positions that tenders alone never reach."},"questions":[{"id":"SR1","q":"Is there a formal supplier relationship-management (SRM) program with clear segmentation and governance?","levels":["Supplier management is reactive and transactional with no structured approach.","Key suppliers identified and reviewed periodically but without formal governance.","Suppliers segmented by importance and risk; governance routines defined and followed.","SRM is strategic, co-owned with stakeholders, and continuously delivers value through structured collaboration."]},{"id":"SR2","q":"Are supplier performance indicators clearly defined, tracked, and used to drive improvement actions?","levels":["Supplier performance monitored informally; data incomplete or subjective.","Basic KPIs defined for key suppliers but tracked inconsistently.","A standard performance framework in place; results tracked and reviewed regularly with suppliers.","AI-enhanced supplier performance data is transparent, predictive, and used collaboratively to drive continuous improvement and anticipate issues before they impact operations."]},{"id":"SR3","q":"Are suppliers engaged in co-innovation, joint development, or continuous-improvement programs?","levels":["Supplier relationships focus solely on cost and delivery.","Occasional improvement ideas shared but no formal innovation process.","Structured collaboration programs with defined innovation objectives and shared metrics.","Co-innovation integrated into SRM; joint projects deliver measurable mutual business value."]},{"id":"SR4","q":"Is supplier lifecycle management (onboarding, performance, renewal, and exit) defined and consistently applied?","levels":["Onboarding and exits unstructured, vary by buyer or region.","Standard onboarding and qualification steps exist but lack follow-up.","Full lifecycle process from onboarding through evaluation to exit defined and followed with systematic data capture.","AI-orchestrated supplier lifecycle: automated onboarding workflows, continuous performance and risk monitoring, predictive renewal recommendations, and data-driven exit triggers — all governed within clear human-oversight frameworks."]},{"id":"SR5","q":"Are contractual obligations and service levels actively monitored and enforced throughout the contract lifecycle?","levels":["Contracts rarely revisited after signature; compliance dependent on individuals.","Obligations tracked for key suppliers but accountability unclear.","Formal process ensures obligations, SLAs, and penalties monitored and discussed.","Contract-performance management automated and transparent, driving accountability and improvement."]}]},{"num":"7","title":"Risk & Opportunity Management","short":"Risk","weight":10,"rec":{"title":"Move risk management from reactive to systematic","text":"Introduce structured supplier risk assessment, financial-health and compliance screening (sanctions, cyber, anti-corruption), and tested contingency plans for critical categories. Predictive tooling comes second; the fundamentals come first."},"questions":[{"id":"RO1","q":"Is there a structured supplier risk-assessment and segmentation process that informs decisions?","levels":["Supplier risk handled informally; issues managed only after they occur.","Key suppliers assessed periodically using basic financial or performance checks.","Multi-factor risk-assessment model defines segmentation and mitigation priorities with regular monitoring.","AI-powered risk monitoring is continuous and embedded in supplier governance; predictive insights proactively shape sourcing, segmentation, and contingency strategies."]},{"id":"RO2","q":"Are contingency plans such as dual sourcing or alternate suppliers defined and maintained for critical categories?","levels":["No formal contingency planning; reliance on single sources.","Contingency actions defined for key materials but not regularly tested.","Documented and tested continuity plans in place for critical suppliers or items.","Business-continuity planning integrated with sourcing and risk management; readiness reviewed jointly with suppliers."]},{"id":"RO3","q":"Is the financial health and viability of critical suppliers systematically monitored?","levels":["No financial screening; supplier distress discovered only when problems occur.","Credit checks performed at onboarding for key suppliers; no ongoing monitoring.","Regular financial analysis (ratings, key ratios, payment behaviour) for critical suppliers, with defined escalation and mitigation paths.","Continuous, AI-supported financial-health monitoring with predictive distress indicators, integrated into segmentation, sourcing, and contingency planning."]},{"id":"RO4","q":"Are suppliers screened for sanctions, export-control, anti-corruption, and cyber-security risks — at onboarding and on an ongoing basis?","levels":["No systematic compliance or cyber screening.","Basic screening at onboarding for selected suppliers; no periodic refresh.","Risk-based due diligence embedded in onboarding and refreshed periodically; cyber-security requirements defined for critical suppliers.","Continuous automated screening across the supply base with real-time alerts; compliance status and cyber posture integrated into supplier governance and sourcing decisions."]},{"id":"RO5","q":"Are risk considerations systematically embedded in sourcing decisions and contracts?","levels":["Risks rarely identified or addressed in sourcing or contracting.","Key contracts include basic clauses for liability or insurance, applied inconsistently.","Structured risk reviews conducted during sourcing; mitigation and contract terms aligned.","Risk management fully integrated into sourcing, evaluation, and supplier collaboration processes."]},{"id":"RO6","q":"Are AI-driven early-warning systems, predictive-risk analytics, and scenario simulations used to anticipate disruptions and stress-test supply-chain resilience?","levels":["Procurement relies on external news or supplier notifications after problems occur; no structured scenario testing.","Manual monitoring of key markets and suppliers; scenario exercises conducted occasionally for major risk areas.","AI-powered dashboards integrate financial, geopolitical, ESG, and delivery signals to surface leading indicators; AI-supported scenario modelling covers key suppliers and categories as part of regular planning.","Agentic AI continuously monitors multi-source risk signals, runs digital-twin simulations to stress-test the supply chain, models impact scenarios, and recommends mitigation actions in real time."]}]},{"num":"8","title":"Technology & Data","short":"Tech & Data","weight":10,"rec":{"title":"Consolidate the digital landscape and data foundation","text":"Integrate core systems (e-sourcing, CLM, P2P) and establish one trusted data foundation for spend, suppliers and contracts with managed master-data quality. Clean, connected data is the precondition for every analytics and AI ambition."},"questions":[{"id":"TD1","q":"Is there an integrated technology landscape supporting core procurement processes such as sourcing, contracting, and purchasing?","levels":["Procurement operates with manual tools, spreadsheets, and disconnected systems.","Some digital tools are in place for sourcing or purchasing but operate independently.","Core systems (e-sourcing, CLM, P2P) integrated under common governance with defined ownership.","AI-orchestrated digital ecosystem: fully connected platforms with intelligent workflow automation, real-time data sharing, and agentic capabilities enabling autonomous cross-system operation."]},{"id":"TD2","q":"Does procurement operate from a single, trusted data foundation covering spend, suppliers, and contracts?","levels":["Data fragmented across teams and systems; accuracy unreliable.","Central repository exists but updates and governance inconsistent.","Common data model maintained with clear ownership, routine validation, and structured for AI/analytics consumption.","Real-time, AI-ready enterprise data foundation with automated governance, integrated across all procurement processes and analytics — enabling AI agents to operate with trusted, complete data."]},{"id":"TD3","q":"How are analytics and AI used to inform and drive procurement decisions?","levels":["Analytics limited to descriptive reports or one-off analyses; decisions made on intuition.","Dashboards track basic KPIs; some ad-hoc use of Gen AI tools by individuals.","Predictive analytics and AI-generated insights routinely support sourcing, supplier reviews, and performance management.","AI-driven analytics embedded in daily workflows: autonomous pattern detection, prescriptive recommendations, and real-time decision support across all procurement activities."]},{"id":"TD4","q":"To what extent are procurement processes automated, and is AI used to handle transactional and routine tasks autonomously?","levels":["Processes largely manual and paper-based; heavy reliance on email and spreadsheets.","Partial automation through workflow tools or ERP modules for core transactions.","End-to-end transactional automation with AI handling routine decisions (e.g. auto-approvals, matching, exception triage).","Agentic AI manages transactional workflows autonomously within defined guardrails; human effort focused on strategic exceptions, oversight, and continuous improvement of AI performance."]},{"id":"TD5","q":"How mature is the organisation’s adoption of AI — from generative AI tools to agentic AI systems — across procurement processes?","levels":["No systematic use of AI; individuals may use general-purpose tools informally.","Generative AI deployed in defined use cases (e.g. contract summarisation, spend analysis, RFP drafting) with governance in place.","AI integrated into core workflows: sourcing intelligence, supplier risk monitoring, contract analysis, and negotiation preparation — with clear human-in-the-loop oversight.","Agentic AI systems operate autonomously across procurement processes within governed guardrails — sourcing, monitoring, compliance, and reporting orchestrated by AI with human oversight focused on strategy and exceptions."]},{"id":"TD6","q":"Is data quality for suppliers, materials, and contracts actively managed and measured?","levels":["Data quality unmanaged; inaccuracies common.","Basic cleansing and maintenance performed manually.","Defined KPIs, roles, and processes ensure consistent master-data quality.","Data quality monitored continuously with automated validation and improvement processes."]}]},{"num":"9","title":"Sustainability & ESG","short":"ESG","weight":5,"rec":{"title":"Make sustainability enforceable, not aspirational","text":"Embed ESG criteria into supplier selection and contracts, monitor performance against defined targets, and verify supplier data through audits or third-party assurance. Move from clauses on paper to measured improvement in the supply base."},"questions":[{"id":"SU1","q":"Are environmental, social, and governance (ESG) criteria integrated into supplier selection and contracting processes?","levels":["ESG factors rarely considered in sourcing or contracts.","ESG questions or clauses included for key suppliers but applied inconsistently.","ESG criteria consistently built into evaluations and contract terms for all relevant categories.","ESG performance is a mandatory and weighted factor in supplier selection and ongoing contract management."]},{"id":"SU2","q":"Is supplier ESG performance monitored and used to drive improvement actions?","levels":["Supplier ESG performance not monitored.","Basic ESG compliance checks performed periodically.","Regular ESG performance reviews integrated into supplier meetings and improvement plans.","AI-enabled continuous ESG monitoring embedded in supplier management, with automated alerts and predictive analytics leading to measurable environmental and social improvements."]},{"id":"SU3","q":"Are sustainability and ESG targets defined, tracked, and reported for procurement categories and programs?","levels":["No defined ESG or sustainability targets.","General ESG targets exist but lack clear ownership or measurement.","Category-level ESG targets tracked through dashboards and supplier collaboration.","ESG targets embedded in business KPIs and procurement scorecards with transparent reporting of progress."]},{"id":"SU4","q":"Are suppliers required to comply with defined ethical, social, and environmental standards, and is compliance monitored?","levels":["Supplier standards not defined or enforced.","Supplier Code of Conduct exists but compliance not systematically verified.","Regular risk-based audits verify supplier compliance; results tracked and corrective actions monitored.","Comprehensive compliance framework embedded in supplier management; continuous improvement embedded in partnerships."]},{"id":"SU5","q":"Are suppliers actively engaged in sustainability improvement or innovation programs?","levels":["No sustainability engagement with suppliers.","Ad-hoc discussions on sustainability with selected suppliers.","Structured sustainability programs with defined objectives for key supplier categories.","Sustainability embedded in co-innovation programs delivering measurable shared value and impact."]},{"id":"SU6","q":"Is supplier ESG data independently verified or assured through audits or third-party validation?","levels":["ESG data self-reported by suppliers without verification.","Spot checks or desk audits conducted for high-risk suppliers.","Independent assurance conducted regularly for key metrics and suppliers.","Verified ESG data fully integrated into reporting and decision-making processes, ensuring credibility and trust."]}]},{"num":"10","title":"People & Capability / Change Management","short":"People","weight":5,"rec":{"title":"Invest in capability ahead of tools","text":"Define a competency model covering functional, behavioural and AI/digital skills, run a structured learning programme, and apply real change management to new ways of working. Capability, more than mandate, determines the value procurement is invited to create."},"questions":[{"id":"PC1","q":"Are procurement capabilities — including traditional functional skills and AI/digital literacy — clearly defined and systematically developed?","levels":["Capabilities undefined; skill gaps addressed reactively; no recognition of AI/digital skills.","Key functional skills recognised and some training provided; AI awareness emerging but unstructured.","Competency model includes both traditional procurement and AI/digital skills; structured development plans address both dimensions.","Capabilities continuously evolve with technology: AI literacy, data fluency, and human-AI collaboration embedded alongside category management, sourcing, and contracting — with clear career paths reflecting the new skill mix."]},{"id":"PC2","q":"Are behavioural capabilities such as stakeholder influence, collaboration, commercial mindset, and AI stewardship actively developed?","levels":["Focus limited to technical training; behavioural development ad-hoc.","Core behavioural training delivered for selected staff.","Procurement professionals assessed and coached on behavioural performance, including human-AI collaboration, as part of regular reviews.","Behavioural excellence — including AI stewardship and human-AI collaboration — integrated into recruitment, development, and recognition; procurement viewed as a trusted business partner."]},{"id":"PC3","q":"Is there a structured learning and upskilling program supporting procurement capability development?","levels":["No formal learning plan; training discretionary.","Basic learning plan exists but not linked to strategy.","Structured learning program aligned to capability needs, including AI and digital skills, and tracked for completion.","Continuous learning culture embedded with AI-literacy and digital-skills development as core pillars; learning programmes leverage AI tools for personalised development and evolve dynamically with technology and business priorities."]},{"id":"PC4","q":"Is stakeholder engagement managed proactively through structured plans and feedback mechanisms?","levels":["Stakeholder engagement informal and reactive.","Stakeholder plans developed for key projects or categories.","Structured stakeholder engagement embedded in sourcing lifecycle with feedback loops.","Procurement maintains trusted-advisor relationships; engagement measured and continuously improved across all business areas."]},{"id":"PC5","q":"Is change management applied effectively to enable new ways of working, tools, or organisational changes?","levels":["Change efforts unstructured; adoption left to individuals.","Basic communication and training support for major changes.","Formal change-management framework applied to initiatives — including AI adoption — with clear ownership and adoption tracking.","Change capability embedded in culture with specific focus on AI adoption: teams are equipped to evaluate, adopt, and govern new AI tools; adoption is measured, and human-AI ways of working are continuously refined."]},{"id":"PC6","q":"Is there structured governance for capability development and continuous improvement (e.g. PDPs, budgets, skill sprints)?","levels":["No governance or funding for capability building.","Individual development plans exist but reviewed irregularly.","Governance framework tracks development progress and allocates dedicated resources.","Continuous capability governance in place with measurable ROI on training and performance improvement."]}]},{"num":"11","title":"AI Governance & Operating Model","short":"AI Governance","weight":5,"rec":{"title":"Set AI guardrails before scaling AI","text":"Establish an AI governance framework (approved tools, data boundaries, human oversight) and redesign the operating model to define which decisions are automated, AI-assisted or human-led. Governed adoption compounds; ungoverned adoption creates risk and rework."},"questions":[{"id":"AI1","q":"Is there a clear governance framework for AI use in procurement — covering data privacy, algorithmic accountability, human oversight, and ethical boundaries?","levels":["No AI governance; tools adopted ad-hoc without oversight or policy.","Basic guidelines exist for AI tool usage but enforcement and monitoring are limited.","Formal AI governance framework defines approved tools, data boundaries, human-in-the-loop requirements, and accountability for AI-assisted decisions.","AI governance fully embedded in procurement operations: continuous monitoring of AI outputs, bias checks, transparent audit trails, and regular review of AI performance and ethical compliance."]},{"id":"AI2","q":"Has the procurement operating model been redesigned to define how humans and AI systems collaborate — clarifying which decisions are automated, AI-assisted, or human-led?","levels":["No consideration of AI in the operating model; all roles and processes defined without reference to AI.","Some roles use AI tools, but the operating model has not been formally updated to reflect AI integration.","Operating model explicitly defines human-AI collaboration: clear boundaries for autonomous AI action, AI-assisted decision-making, and human-led strategic decisions.","Fully adaptive operating model where human and AI roles are continuously optimised; AI agents handle defined tasks autonomously while humans focus on strategy, relationships, and exception management — with regular review of the human-AI boundary."]},{"id":"AI3","q":"Is the digital and AI readiness of key suppliers assessed and developed as part of the supplier relationship strategy?","levels":["Supplier digital capabilities not assessed or considered.","Basic awareness of key suppliers’ digital maturity but no structured assessment.","Supplier AI/digital readiness assessed for strategic and critical suppliers; development support offered where needed.","Supplier digital maturity is a weighted factor in segmentation and development; joint AI initiatives and data-sharing arrangements in place with strategic partners."]}]}];
+
+/* ====== configuration — edit before publishing ====== */
+const CONTACT_LINK  = "mailto:WeinoldConsulting@gmail.com";  // CTA button target (mailto: or a contact-page URL)
+const RESULTS_EMAIL = "WeinoldConsulting@gmail.com";         // where "Email my results" is addressed
+const FORM_ENDPOINT = "";  // OPTIONAL: paste a Formspree/Netlify-Forms endpoint URL here to enable one-click automatic submission
+document.getElementById("ctaLink").href = CONTACT_LINK;
+
+const LEVELS = ["Foundational","Consistent","High-Performing","Best-in-Class"];
+const LETTERS = ["A","B","C","D"];
+const answers = {};            // { questionId: 0..3 }
+let current = 0;
+const TOTAL_Q = SECTIONS.reduce((n,s)=>n+s.questions.length,0);
+
+/* ---------- flow ---------- */
+function startAssessment(){
+  document.getElementById("intro").style.display="none";
+  document.getElementById("assess").style.display="block";
+  renderRail(); renderSection(0);
+  window.scrollTo(0,0);
+}
+function restart(){
+  for (const k in answers) delete answers[k];
+  current = 0;
+  document.getElementById("results").style.display="none";
+  document.getElementById("intro").style.display="flex";
+  window.scrollTo(0,0);
+}
+function reviewAnswers(){
+  document.getElementById("results").style.display="none";
+  document.getElementById("assess").style.display="block";
+  renderRail(); renderSection(0);
+  window.scrollTo(0,0);
+}
+
+/* ---------- rail & progress ---------- */
+function sectionDone(i){ return SECTIONS[i].questions.every(q => answers[q.id] !== undefined); }
+function renderRail(){
+  const ol = document.getElementById("railList");
+  ol.innerHTML = "";
+  SECTIONS.forEach((s,i)=>{
+    const li = document.createElement("li");
+    if (i===current) li.classList.add("current");
+    if (sectionDone(i)) li.classList.add("done");
+    const reachable = i<=current || sectionDone(i) || (i>0 && sectionDone(i-1));
+    li.innerHTML = `<button ${reachable?"":"disabled"} data-i="${i}"><span class="num">${s.num}</span><span>${s.short}</span></button>`;
+    li.querySelector("button").addEventListener("click",()=>{ renderSection(i); });
+    ol.appendChild(li);
+  });
+  updateProgress();
+}
+function updateProgress(){
+  const done = Object.keys(answers).length;
+  document.getElementById("pbar").style.width = (done/TOTAL_Q*100)+"%";
+  document.getElementById("plabel").textContent = done + " of " + TOTAL_Q + " answered";
+}
+
+/* ---------- section rendering ---------- */
+function renderSection(i){
+  current = i;
+  const s = SECTIONS[i];
+  const host = document.getElementById("sectionHost");
+  let h = `<div class="section-head">
+    <div class="kicker">Capability ${s.num} of ${SECTIONS.length}</div>
+    <h2>${s.title}</h2>
+    <p>Select the level that best describes your organisation today — the level whose description is fully met, not aspirational.</p>
+  </div>`;
+  s.questions.forEach(q=>{
+    h += `<div class="qcard" id="card-${q.id}">
+      <div class="qhead"><span class="qid">${q.id}</span><span class="qtext">${q.q}</span></div>
+      <div class="opts" role="radiogroup" aria-label="${q.id}">`;
+    q.levels.forEach((desc,li)=>{
+      const checked = answers[q.id]===li;
+      h += `<label class="opt ${checked?"selected":""}">
+        <input type="radio" name="${q.id}" value="${li}" ${checked?"checked":""}>
+        <span><span class="lvl">${LETTERS[li]} — ${LEVELS[li]}</span><span class="desc">${desc}</span></span>
+      </label>`;
+    });
+    h += `</div></div>`;
+  });
+  const last = i===SECTIONS.length-1;
+  h += `<div class="nav-row">
+    <button class="btn btn-ghost" id="backBtn" ${i===0?"disabled":""}>Back</button>
+    <span class="nav-hint" id="navHint"></span>
+    <button class="btn btn-amber" id="nextBtn">${last?"See my results":"Next capability"}</button>
+  </div>`;
+  host.innerHTML = h;
+
+  host.querySelectorAll("input[type=radio]").forEach(r=>{
+    r.addEventListener("change",e=>{
+      answers[e.target.name] = Number(e.target.value);
+      const card = document.getElementById("card-"+e.target.name);
+      card.querySelectorAll(".opt").forEach(o=>o.classList.remove("selected"));
+      e.target.closest(".opt").classList.add("selected");
+      renderRail(); refreshNav();
+    });
+  });
+  document.getElementById("backBtn").addEventListener("click",()=>{ renderSection(i-1); window.scrollTo(0,0); });
+  document.getElementById("nextBtn").addEventListener("click",()=>{
+    if (!sectionDone(i)){ flagMissing(i); return; }
+    if (last) showResults();
+    else { renderSection(i+1); window.scrollTo(0,0); }
+  });
+  renderRail(); refreshNav();
+  function refreshNav(){
+    const answered = s.questions.filter(q=>answers[q.id]!==undefined).length;
+    const hint = document.getElementById("navHint");
+    hint.classList.remove("warn");
+    hint.textContent = answered + " of " + s.questions.length + " answered in this capability";
+    document.getElementById("nextBtn").disabled = answered !== s.questions.length;
+  }
+  function flagMissing(i){
+    const q = s.questions.find(q=>answers[q.id]===undefined);
+    if (q){ document.getElementById("card-"+q.id).scrollIntoView({block:"center"});
+      const hint = document.getElementById("navHint");
+      hint.textContent = "Please answer all questions to continue"; hint.classList.add("warn"); }
+  }
+}
+
+/* ---------- scoring ---------- */
+function capScores(){
+  return SECTIONS.map(s=>{
+    const pts = s.questions.map(q=>answers[q.id]+1);
+    return { ...s, score: pts.reduce((a,b)=>a+b,0)/pts.length };
+  });
+}
+function overall(caps){
+  const wsum = caps.reduce((a,c)=>a+c.weight,0);
+  return caps.reduce((a,c)=>a+c.score*c.weight,0)/wsum;
+}
+function bandOf(score){
+  if (score < 1.75) return { name:"Foundational", color:"var(--lvlA)",
+    text:"Procurement operates largely reactively. The priority is building the basics: documented processes, spend transparency, and a clear mandate — the foundation everything else stands on." };
+  if (score < 2.5) return { name:"Consistent", color:"var(--lvlB)",
+    text:"Core processes exist but are not yet embedded everywhere. The step-change comes from consistent application, governance, and measurement across all categories and regions." };
+  if (score < 3.25) return { name:"High-Performing", color:"var(--lvlC)",
+    text:"Procurement is proactive, data-driven and cross-functional. The next horizon is deeper integration with business strategy, advanced analytics, and selective automation." };
+  return { name:"Best-in-Class", color:"var(--lvlD)",
+    text:"Procurement operates at benchmark level. Focus on sustaining the edge: continuous innovation, governed AI at scale, and exporting procurement's capabilities into the wider business." };
+}
+
+/* ---------- results ---------- */
+function showResults(){
+  document.getElementById("assess").style.display="none";
+  document.getElementById("results").style.display="block";
+  window.scrollTo(0,0);
+
+  const caps = capScores();
+  const ov = overall(caps);
+  const band = bandOf(ov);
+
+  const org = document.getElementById("orgName").value.trim();
+  const usr = document.getElementById("userName").value.trim();
+  const today = new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
+  document.getElementById("resOrg").textContent =
+    [org, usr && ("assessed by " + usr), today].filter(Boolean).join(" · ");
+
+  document.getElementById("bigScore").textContent = ov.toFixed(2);
+  const chip = document.getElementById("lvlChip");
+  chip.textContent = band.name; chip.style.background = band.color;
+  document.getElementById("lvlText").textContent = band.text;
+
+  drawRadar(caps);
+  drawBars(caps);
+  drawRecs(caps);
+  drawSummary(caps);
+  setupSharing(caps, ov, band);
+}
+
+/* ---------- sharing results ---------- */
+function resultsPayload(caps, ov, band){
+  return {
+    organisation: document.getElementById("orgName").value.trim() || "(not given)",
+    assessedBy:   document.getElementById("userName").value.trim() || "(not given)",
+    date: new Date().toISOString().slice(0,10),
+    overallScore: ov.toFixed(2),
+    maturityBand: band.name,
+    capabilities: caps.map(c => ({ num:c.num, capability:c.title, score:c.score.toFixed(2) })),
+    answers: Object.fromEntries(SECTIONS.flatMap(s => s.questions.map(q => [q.id, LETTERS[answers[q.id]]])))
+  };
+}
+function setupSharing(caps, ov, band){
+  const p = resultsPayload(caps, ov, band);
+  // pre-filled email
+  const capLines = p.capabilities.map(c => c.num + ". " + c.capability + ": " + c.score).join("\n");
+  const ansLine = Object.entries(p.answers).map(([k,v]) => k + ":" + v).join(" ");
+  const body =
+    "Procurement Maturity Assessment 2.0 - results\n" +
+    "Organisation: " + p.organisation + "\nAssessed by: " + p.assessedBy + "\nDate: " + p.date + "\n\n" +
+    "Overall score: " + p.overallScore + " / 4.00 (" + p.maturityBand + ")\n\n" +
+    "Scores per capability:\n" + capLines + "\n\n" +
+    "Answers per question:\n" + ansLine + "\n";
+  document.getElementById("emailResultsBtn").href =
+    "mailto:" + RESULTS_EMAIL +
+    "?subject=" + encodeURIComponent("Maturity Assessment results — " + p.organisation) +
+    "&body=" + encodeURIComponent(body);
+  // automatic submission only if an endpoint is configured
+  if (FORM_ENDPOINT) {
+    document.getElementById("autoSendBtn").style.display = "inline-block";
+    document.getElementById("shareNote").textContent =
+      "“Send my results” transmits them directly. Alternatively, use the pre-filled email or attach the CSV.";
+  }
+}
+function sendResults(btn){
+  const caps = capScores(); const ov = overall(caps); const band = bandOf(ov);
+  btn.disabled = true; btn.textContent = "Sending…";
+  fetch(FORM_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify(resultsPayload(caps, ov, band))
+  }).then(r => {
+    if (!r.ok) throw new Error(r.status);
+    btn.textContent = "Sent — thank you ✓";
+  }).catch(() => {
+    btn.disabled = false; btn.textContent = "Send my results";
+    document.getElementById("shareNote").textContent =
+      "Automatic sending did not work — please use “Email my results” or attach the CSV instead.";
+  });
+}
+function downloadCSV(){
+  const caps = capScores(); const ov = overall(caps); const band = bandOf(ov);
+  const p = resultsPayload(caps, ov, band);
+  const esc = v => '"' + String(v).replace(/"/g,'""') + '"';
+  const rows = [
+    ["Procurement Maturity Assessment 2.0"],
+    ["Organisation", p.organisation], ["Assessed by", p.assessedBy], ["Date", p.date],
+    ["Overall score", p.overallScore], ["Maturity band", p.maturityBand], [],
+    ["Capability no.","Capability","Average score (1-4)"]
+  ];
+  caps.forEach(c => rows.push([c.num, c.title, c.score.toFixed(2)]));
+  rows.push([], ["Question ID","Capability","Question","Level (A-D)","Score (1-4)"]);
+  SECTIONS.forEach(s => s.questions.forEach(q =>
+    rows.push([q.id, s.title, q.q, LETTERS[answers[q.id]], answers[q.id]+1])));
+  const csv = rows.map(r => r.map(esc).join(",")).join("\r\n");
+  const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "maturity-assessment-results-" + (p.organisation !== "(not given)" ? p.organisation.replace(/[^\w-]+/g,"_") + "-" : "") + p.date + ".csv";
+  document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+
+/* diamond (radar) chart, pure SVG */
+function drawRadar(caps){
+  const svg = document.getElementById("radar");
+  const cx=230, cy=222, R=158, n=caps.length;
+  const ang = i => -Math.PI/2 + i*2*Math.PI/n;
+  const pt = (i,r) => [cx + r*Math.cos(ang(i)), cy + r*Math.sin(ang(i))];
+  let h = "";
+  // grid rings at scores 1..4 (outer ring first so its fill sits behind)
+  for (let k=4;k>=1;k--){
+    const r = R*k/4;
+    const pts = caps.map((_,i)=>pt(i,r).map(v=>v.toFixed(1)).join(",")).join(" ");
+    h += `<polygon points="${pts}" fill="${k===4?"#F7FAFD":"none"}" stroke="#D5DEE9" stroke-width="1"/>`;
+  }
+  // spokes + labels
+  caps.forEach((c,i)=>{
+    const [x,y] = pt(i,R);
+    h += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#D5DEE9" stroke-width="1"/>`;
+    const [lx,ly] = pt(i,R+20);
+    const anchor = Math.abs(lx-cx)<12 ? "middle" : (lx>cx ? "start" : "end");
+    h += `<text x="${lx.toFixed(1)}" y="${(ly+4).toFixed(1)}" text-anchor="${anchor}"
+           font-size="12" fill="#3D5170" font-family="-apple-system,Segoe UI,sans-serif">${c.short}</text>`;
+  });
+  // ring value labels
+  for (let k=1;k<=4;k++)
+    h += `<text x="${cx+5}" y="${(cy - R*k/4 + 4).toFixed(1)}" font-size="9.5" fill="#9AAABF" font-family="ui-monospace,monospace">${k}</text>`;
+  // score polygon
+  const spts = caps.map((c,i)=>pt(i, R*c.score/4));
+  h += `<polygon points="${spts.map(p=>p.map(v=>v.toFixed(1)).join(",")).join(" ")}"
+        fill="rgba(31,56,100,0.30)" stroke="#1F3864" stroke-width="2.5" stroke-linejoin="round"/>`;
+  spts.forEach(p=>{ h += `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4" fill="#C55A11" stroke="#fff" stroke-width="1.5"/>`; });
+  svg.innerHTML = h;
+}
+
+function drawBars(caps){
+  document.getElementById("capBars").innerHTML = caps.map(c=>`
+    <div class="cap-bar">
+      <span class="nm" title="${c.title}">${c.num}. ${c.short}</span>
+      <span class="track"><span class="fill" style="width:${(c.score/4*100).toFixed(0)}%;display:block"></span></span>
+      <span class="val">${c.score.toFixed(2)}</span>
+    </div>`).join("");
+}
+
+function drawRecs(caps){
+  const lowest = [...caps].sort((a,b)=> a.score-b.score || b.weight-a.weight).slice(0,3);
+  document.getElementById("recHost").innerHTML = lowest.map((c,i)=>`
+    <div class="rec">
+      <div class="rec-rank">${i+1}</div>
+      <div>
+        <h4>${c.rec.title}</h4>
+        <div class="rec-cap">${c.title} · current score ${c.score.toFixed(2)} / 4.00</div>
+        <p>${c.rec.text}</p>
+      </div>
+    </div>`).join("");
+}
+
+function drawSummary(caps){
+  document.getElementById("sumHost").innerHTML = caps.map(c=>`
+    <div class="sum-cap">
+      <div class="sum-cap-head"><b>${c.num}. ${c.title}</b><span>avg ${c.score.toFixed(2)} / 4.00</span></div>
+      <table class="sum"><tbody>
+        ${c.questions.map(q=>{
+          const a = answers[q.id];
+          return `<tr>
+            <td class="c-id">${q.id}</td>
+            <td>${q.q}</td>
+            <td class="c-lvl"><span class="chip ${LETTERS[a]}">${LETTERS[a]}</span>&nbsp; ${LEVELS[a]}</td>
+          </tr>`;
+        }).join("")}
+      </tbody></table>
+    </div>`).join("");
+}
+</script>
+</body>
+</html>
