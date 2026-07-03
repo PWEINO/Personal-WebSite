@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 const SECTIONS = ["home", "about", "services", "solutions", "approach", "contact"];
 
@@ -834,6 +835,7 @@ export default function PeterWeinoldWebsite() {
 
   return (
     <div style={{ background: "#FAF7F3", color: "#2C2825", minHeight: "100vh" }}>
+      <Analytics />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap');
 
