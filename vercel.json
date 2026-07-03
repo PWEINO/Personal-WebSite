@@ -1,0 +1,17 @@
+{
+  "framework": "vite",
+  "installCommand": "npm install",
+  "buildCommand": "npx vite build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/p", "destination": "/pulse" }
+  ],
+  "headers": [
+    {
+      "source": "/assessment/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    }
+  ]
+}
