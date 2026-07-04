@@ -23,13 +23,14 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap');
   :root{
-    --ink:#14263F; --navy:#1F3864; --navy2:#2E5B8A; --steel:#6C7F97; --faint:#9AAABF;
-    --paper:#F4F6F9; --card:#FFFFFF; --line:#DCE3EC;
-    --amber:#C55A11; --amber-soft:#FBEFE4;
-    --lvlA:#B14A3A; --lvlB:#B9832A; --lvlC:#3E7CA6; --lvlD:#2E7D5B;
-    --serif:Georgia,'Times New Roman',serif;
-    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --ink:#6B6560; --navy:#6B6560; --navy2:#5C5550; --steel:#6B6560; --faint:#9A948D;
+    --paper:#FAF7F3; --card:#FFFFFF; --line:#E0D9CE;
+    --amber:#D4882B; --amber-soft:#F5EDD8;
+    --lvlA:#A0523D; --lvlB:#96782A; --lvlC:#5C8A6B; --lvlD:#3D6B4F;
+    --serif:'DM Serif Display',Georgia,serif;
+    --sans:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
     --mono:ui-monospace,'SF Mono','Cascadia Mono',Consolas,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -39,24 +40,24 @@
   .shell{max-width:640px;margin:0 auto;padding:0 18px}
 
   /* ---------- intro ---------- */
-  #intro{background:radial-gradient(48rem 26rem at 90% -12%, #2A4A78 0%, transparent 60%), var(--navy);
+  #intro{background:radial-gradient(48rem 26rem at 90% -12%, #7A756F 0%, transparent 60%), var(--navy);
     color:#fff;position:relative;overflow:hidden}
   #intro .inner{position:relative;padding:56px 0 52px}
   .diamond-bg{position:absolute;right:-120px;top:-60px;opacity:.13;pointer-events:none}
-  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;color:#F0B98A;text-transform:uppercase}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;color:#C9A84C;text-transform:uppercase}
   #intro h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,7vw,42px);line-height:1.12;margin:14px 0 12px}
-  #intro p.sub{color:#C6D2E2;font-size:16.5px;max-width:46ch}
+  #intro p.sub{color:#B5AFA6;font-size:16.5px;max-width:46ch}
   .facts{display:flex;gap:24px;flex-wrap:wrap;margin:24px 0 28px}
   .fact b{font-family:var(--serif);font-size:23px;display:block;font-weight:400}
-  .fact span{font-size:11.5px;color:#9FB2CA;letter-spacing:.05em;text-transform:uppercase}
+  .fact span{font-size:11.5px;color:#9A948D;letter-spacing:.05em;text-transform:uppercase}
   .btn{display:inline-block;border:none;border-radius:6px;padding:14px 26px;font-size:16.5px;font-weight:600;
     text-decoration:none;text-align:center;transition:background .15s}
   .btn:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
   .btn-amber{background:var(--amber);color:#fff}
-  .btn-amber:hover{background:#A94C0C}
+  .btn-amber:hover{background:#6F5510}
   .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
-  .btn-ghost:hover{background:#EDF1F7}
-  .privacy{margin-top:14px;font-size:12.5px;color:#8FA3BD}
+  .btn-ghost:hover{background:#EDE7DC}
+  .privacy{margin-top:14px;font-size:12.5px;color:#8A847C}
 
   /* ---------- quiz ---------- */
   #quiz{display:none;padding:34px 0 70px}
@@ -69,10 +70,10 @@
     line-height:1.3;margin-bottom:20px;min-height:2.6em}
   .opts{display:grid;gap:10px}
   .opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);border-radius:9px;
-    padding:14px 16px;background:var(--card);font-size:15.5px;color:#2B3E58;transition:border-color .12s,background .12s,transform .06s}
+    padding:14px 16px;background:var(--card);font-size:15.5px;color:#6B6560;transition:border-color .12s,background .12s,transform .06s}
   .opt:hover{border-color:var(--navy2)}
   .opt:active{transform:scale(.99)}
-  .opt.picked{border-color:var(--navy);background:#F2F6FB}
+  .opt.picked{border-color:var(--navy);background:#F5EDD8}
   .opt .tag{font-family:var(--mono);font-size:11px;color:var(--faint);display:block;margin-bottom:2px;letter-spacing:.05em}
   .backrow{margin-top:22px}
   .backrow button{background:none;border:none;color:var(--steel);font-size:14px;text-decoration:underline}
@@ -92,20 +93,20 @@
   .finding{border-left:5px solid var(--amber);background:var(--amber-soft);border-radius:0 10px 10px 0;padding:18px 20px;margin-top:18px}
   .finding .f-label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--amber);text-transform:uppercase;margin-bottom:6px}
   .finding h3{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--navy);margin-bottom:6px}
-  .finding p{font-size:15px;color:#4A3625}
-  .bridge{margin-top:18px;background:linear-gradient(120deg,var(--navy) 0%,#2A4A78 100%);color:#fff;
+  .finding p{font-size:15px;color:#7A756F}
+  .bridge{margin-top:18px;background:linear-gradient(120deg,var(--navy) 0%,#7A756F 100%);color:#fff;
     border-radius:12px;padding:26px 24px;border-left:6px solid var(--amber)}
   .bridge h3{font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:8px}
-  .bridge p{color:#C6D2E2;font-size:15px;margin-bottom:18px}
+  .bridge p{color:#B5AFA6;font-size:15px;margin-bottom:18px}
   .bridge .btns{display:flex;gap:12px;flex-wrap:wrap}
   .bridge a.btn-white{background:#fff;color:var(--navy)}
-  .bridge a.btn-white:hover{background:#E8EDF5}
+  .bridge a.btn-white:hover{background:#EDE7DC}
   .contact-line{margin-top:16px;font-size:13.5px;color:var(--steel);text-align:center}
   .contact-line a{color:var(--navy)}
   .res-actions{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap}
 
-  footer{background:var(--ink);color:#8FA3BD;text-align:center;padding:22px 18px;font-size:12.5px;margin-top:30px}
-  footer b{color:#D5DFEC}
+  footer{background:var(--ink);color:#8A847C;text-align:center;padding:22px 18px;font-size:12.5px;margin-top:30px}
+  footer b{color:#D5CFC6}
 </style>
 </head>
 <body>
@@ -148,7 +149,7 @@
   <h2>Your procurement maturity pulse</h2>
   <div class="score-row">
     <div class="big-score"><span id="score">–</span><small> / 4.0</small></div>
-    <div><span class="lvl-chip" id="bandChip"></span><p id="bandText" style="margin-top:8px;font-size:14.5px;color:#33465F;max-width:40ch"></p></div>
+    <div><span class="lvl-chip" id="bandChip"></span><p id="bandText" style="margin-top:8px;font-size:14.5px;color:#7A756F;max-width:40ch"></p></div>
   </div>
 
   <div class="card">
@@ -333,19 +334,19 @@ function drawMiniRadar(scores){
   for (let k = 4; k >= 1; k--){
     const r = R * k / 4;
     const pts = scores.map((_,i) => pt(i,r).map(v => v.toFixed(1)).join(",")).join(" ");
-    h += `<polygon points="${pts}" fill="${k===4 ? "#F7FAFD" : "none"}" stroke="#D5DEE9" stroke-width="1"/>`;
+    h += `<polygon points="${pts}" fill="${k===4 ? "#FAF7F3" : "none"}" stroke="#D5CFC6" stroke-width="1"/>`;
   }
   scores.forEach((_,i) => {
     const [x,y] = pt(i,R);
-    h += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#D5DEE9" stroke-width="1"/>`;
+    h += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#D5CFC6" stroke-width="1"/>`;
     const [lx,ly] = pt(i, R + 18);
     const anchor = Math.abs(lx-cx) < 12 ? "middle" : (lx > cx ? "start" : "end");
-    h += `<text x="${lx.toFixed(1)}" y="${(ly+4).toFixed(1)}" text-anchor="${anchor}" font-size="12.5" fill="#3D5170" font-family="-apple-system,Segoe UI,sans-serif">${QUESTIONS[i].short}</text>`;
+    h += `<text x="${lx.toFixed(1)}" y="${(ly+4).toFixed(1)}" text-anchor="${anchor}" font-size="12.5" fill="#5C5550" font-family="-apple-system,Segoe UI,sans-serif">${QUESTIONS[i].short}</text>`;
   });
   const spts = scores.map((s,i) => pt(i, R * s / 4));
   h += `<polygon points="${spts.map(p => p.map(v => v.toFixed(1)).join(",")).join(" ")}"
-        fill="rgba(31,56,100,0.30)" stroke="#1F3864" stroke-width="2.5" stroke-linejoin="round"/>`;
-  spts.forEach(p => { h += `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4" fill="#C55A11" stroke="#fff" stroke-width="1.5"/>`; });
+        fill="rgba(60,54,50,0.25)" stroke="#6B6560" stroke-width="2.5" stroke-linejoin="round"/>`;
+  spts.forEach(p => { h += `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4" fill="#D4882B" stroke="#fff" stroke-width="1.5"/>`; });
   svg.innerHTML = h;
 }
 </script>
