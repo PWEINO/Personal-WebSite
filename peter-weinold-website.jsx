@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react";
+
 import { useState, useEffect, useRef } from "react";
 
 const SECTIONS = ["home", "about", "services", "solutions", "approach", "contact"];
@@ -872,6 +874,7 @@ export default function PeterWeinoldWebsite() {
       <Approach />
       <Contact />
       <Footer />
+      <Analytics />
     </div>
   );
 }
